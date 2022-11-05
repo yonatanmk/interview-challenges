@@ -7,7 +7,16 @@
 }
 
 @media (max-width: $tabletBreakpoint) {
-  .wrapper {
+  .wrapper-tablet {
+    flex-direction: column;
+    .cell {
+      width: 100%;
+    }
+  }
+}
+
+@media (max-width: $mobileBreakpoint) {
+  .wrapper-mobile {
     flex-direction: column;
     .cell {
       width: 100%;
