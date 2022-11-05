@@ -40,17 +40,38 @@ export default class Discover extends Component {
     //   config
     // );
 
-    const resp = await axios.get(
-      `https://api.spotify.com/v1/me/playlists`,
-      config
-    );
-
     // this.setState({
     //   playlists: resp.data.playlists.items,
     // });
 
+    const releasesResp = await axios.get(
+      `https://api.spotify.com/v1/browse/new-releases`,
+      config
+    );
+
+    const playlistResp = await axios.get(
+      `https://api.spotify.com/v1/me/playlists`,
+      config
+    );
+
+    const categoriesResp = await axios.get(
+      `https://api.spotify.com/v1/browse/categories`,
+      config
+    );
+
+    // const [releasesResp, playlistResp, categoriesResp] = await Promise.all(
+    //   releasesPromise,
+    //   playlistPromise,
+    //   categoriesPromise
+    // );
+
+    console.log("categoriesResp");
+    console.log(categoriesResp);
+
     this.setState({
-      playlists: resp.data.items,
+      newReleases: releasesResp.data.albums.items,
+      playlists: playlistResp.data.items,
+      categories: categoriesResp.data.categories.items,
     });
   }
 
