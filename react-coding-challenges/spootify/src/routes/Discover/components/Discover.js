@@ -11,6 +11,7 @@ export default class Discover extends Component {
       newReleases: [],
       playlists: [],
       categories: [],
+      loading: false,
     };
   }
 
@@ -44,20 +45,30 @@ export default class Discover extends Component {
     //   playlists: resp.data.playlists.items,
     // });
 
-    const releasesPromise = await axios.get(
+    this.setState({
+      loading: true,
+    });
+
+    function wait(ms) {
+      return new Promise((resolve, reject) => setTimeout(resolve, ms));
+    }
+
+    const releasesPromise = axios.get(
       `https://api.spotify.com/v1/browse/new-releases`,
       config
     );
 
-    const playlistPromise = await axios.get(
+    const playlistPromise = axios.get(
       `https://api.spotify.com/v1/me/playlists`,
       config
     );
 
-    const categoriesPromise = await axios.get(
+    const categoriesPromise = axios.get(
       `https://api.spotify.com/v1/browse/categories`,
       config
     );
+
+    const delayPromise = wait(5000);
 
     console.log("before resps");
 
@@ -65,6 +76,7 @@ export default class Discover extends Component {
       releasesPromise,
       playlistPromise,
       categoriesPromise,
+      delayPromise,
     ]);
 
     const [releasesResp, playlistResp, categoriesResp] = resps;
@@ -73,6 +85,7 @@ export default class Discover extends Component {
       newReleases: releasesResp.data.albums.items,
       playlists: playlistResp.data.items,
       categories: categoriesResp.data.categories.items,
+      loading: false,
     });
   }
 
@@ -81,6 +94,7 @@ export default class Discover extends Component {
 
     return (
       <div className="discover">
+        {this.state.loading && <p>LOADING...</p>}
         <DiscoverBlock
           text="RELEASED THIS WEEK"
           id="released"
