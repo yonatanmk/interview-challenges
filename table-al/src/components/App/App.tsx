@@ -1,8 +1,7 @@
 import "./App.scss";
 import Table from '../Table'
-// import Row from '../Row'
-// import Cell from '../Cell'
 import type { IPerson, ITableColumn } from '../../interfaces'
+import LinkCell from '../LinkCell'
 
 function App() {
   const rows: IPerson[] = [
@@ -15,7 +14,7 @@ function App() {
       "postalZip": 558566,
       "country": "Vietnam",
       "link": {
-        "name": "LinkCell",
+        "component": LinkCell,
         "props": {
           "text": "Facebook",
           "url": "https://www.facebook.com/",
@@ -40,7 +39,7 @@ function App() {
       "postalZip": 11365,
       "country": "South Korea",
       "link": {
-        "name": "LinkCell",
+        "component": LinkCell,
         "props": {
           "text": "Google Maps",
           "url": "https://www.google.com/maps",
@@ -65,7 +64,7 @@ function App() {
       "postalZip": 631226,
       "country": "Netherlands",
       "link": {
-        "name": "LinkCell",
+        "component": LinkCell,
         "props": {
           "text": "Google",
           "url": "https://www.google.com",

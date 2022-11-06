@@ -23,7 +23,7 @@ export interface ITableCell {
 }
 
 export interface ITableCellComponent {
-  name: string;
+  component: React.ComponentType<any>;
   props: {
     [key: string]: any;
   }

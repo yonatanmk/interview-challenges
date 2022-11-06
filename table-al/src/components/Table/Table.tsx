@@ -11,10 +11,6 @@ type ITableProps = {
 
 function Table({ className, rows, columns }: ITableProps) {
   const sortedColumns = [...columns].sort((a, b) => a.index > b.index ? 1 : -1)
-  // const headerCells = sortedColumns.map(col => ({
-  //   id: col.index,
-  //   text: col.name,
-  // }))
   const headerRow = columns.reduce((agg: Partial<IPerson>, col) => {
     return {
       ...agg,
