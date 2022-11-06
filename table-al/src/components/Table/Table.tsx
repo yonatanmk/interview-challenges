@@ -41,7 +41,7 @@ function Table({ className, rows, columns, defaultSortPredicate }: ITableProps) 
     ...col,
     component: HeaderCell,
   }))
-  const sortedRows = orderBy(rows, [sortPredicate], [sortOrder])
+  const sortedRows = orderBy(rows, [sortPredicate, defaultSortPredicate], [sortOrder])
   const headerRow = columns.reduce((agg: Partial<ITableHeaderRow>, col) => {
     return {
       ...agg,

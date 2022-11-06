@@ -89,6 +89,15 @@ function App() {
         },
       },
     },
+    {
+      "id": 123567624,
+      "name": "Bobby",
+      "phone": "1-806-473-9143",
+      "email": "lectus.rutrum@hotmail.com",
+      "address": "P.O. Box 291, 8088 Aenean Road",
+      "postalZip": 23704,
+      "country": "China",
+    },
   ];
 
   const columns: ITableColumn[] = [
