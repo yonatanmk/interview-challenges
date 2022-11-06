@@ -1,38 +1,74 @@
-import classnames from "classnames";
+import React, { useState, createContext } from 'react';
+import classnames from 'classnames';
 import orderBy from 'lodash/orderBy';
 import "./Table.scss";
 import Row from '../Row'
-import type { IPerson, ITableColumn } from '../../interfaces'
+import type { IPerson, ITableColumn, ITableHeaderRow, ISortOrder } from '../../interfaces'
+import HeaderCell from '../HeaderCell';
 
-type ITableProps = {
+interface ITableProps {
   className?: string;
   rows: IPerson[];
   columns: ITableColumn[];
+  defaultSortPredicate: string;
 };
 
-function Table({ className, rows, columns }: ITableProps) {
+export const SORT_ORDERS = Object.freeze({
+  ASC: 'asc',
+  DESC: 'desc',
+} as const)
+
+// interface ITableSortContext {
+//   sortPredicate: string;
+//   sortOrder: ISortOrder;
+//   setSortPredicate: React.Dispatch<React.SetStateAction<string>>;
+//   setSortOrder: React.Dispatch<React.SetStateAction<ISortOrder>>;
+// }
+
+// export const TableSortContext = createContext<ITableSortContext>({
+export const TableSortContext = createContext({
+  sortPredicate: 'name',
+  sortOrder: SORT_ORDERS.ASC as ISortOrder,
+  setSortPredicate:( () => {}) as React.Dispatch<React.SetStateAction<string>>,
+  setSortOrder: (() => {}) as React.Dispatch<React.SetStateAction<ISortOrder>>,
+});
+
+function Table({ className, rows, columns, defaultSortPredicate }: ITableProps) {
+  const [sortPredicate, setSortPredicate] = useState(defaultSortPredicate);
+  const [sortOrder, setSortOrder] = useState(SORT_ORDERS.ASC as ISortOrder);
   const sortedColumns = [...columns].sort((a, b) => a.index > b.index ? 1 : -1)
-  const headerRow = columns.reduce((agg: Partial<IPerson>, col) => {
+  const headerColumns = sortedColumns.map(col => ({
+    ...col,
+    component: HeaderCell,
+  }))
+  const sortedRows = orderBy(rows, [sortPredicate], [sortOrder])
+  const headerRow = columns.reduce((agg: Partial<ITableHeaderRow>, col) => {
     return {
       ...agg,
-      [col.field]: col.name,
+      [col.field]: {
+        props: {
+          name: col.name,
+          field: col.field,
+          sortPredicate,
+          sortOrder,
+        }
+      },
     }
   }, {
     id: 'headerRow',
-  } as Partial<IPerson>) as IPerson;
-
-  console.log('ROWS')
-  console.log(rows)
-  console.log('SORTED ROWS')
-  console.log(orderBy(rows, ['name'], ['asc']))
+    sortPredicate,
+    sortOrder,
+  } as Partial<ITableHeaderRow>) as ITableHeaderRow;
 
   return (
     <table className={classnames("table", className)}>
       <thead>
-        <Row key={headerRow.id} className="row__header" row={headerRow} columns={sortedColumns} isHeader/>
+        <TableSortContext.Provider value={{ sortPredicate, setSortPredicate, sortOrder, setSortOrder }}>
+          <Row key={headerRow.id} className="row__header" row={headerRow} columns={headerColumns} isHeader/>
+        </TableSortContext.Provider>
       </thead>
       <tbody>
-        {rows.map(row => <Row key={row.id} row={row} columns={sortedColumns} />)}
+        {sortedRows.map(row => <Row key={row.id} row={row} columns={sortedColumns} />)}
       </tbody>
     </table>
   );

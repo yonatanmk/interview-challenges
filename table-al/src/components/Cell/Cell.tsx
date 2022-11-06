@@ -4,7 +4,6 @@ import type { ITableCellComponent } from '../../interfaces';
 
 type ICellProps = {
   field?: string | number | ITableCellComponent;
-  renderComponent?: boolean;
   className?: string;
   isHeader?: boolean;
   component?: React.ComponentType<any>;
@@ -12,8 +11,14 @@ type ICellProps = {
 function Cell({ field, className: customClass, component, isHeader = false }: ICellProps) {
   const TableCell = isHeader ? 'th' : 'td';
   const className = classnames("cell", customClass, { "cell__header": isHeader });
+  // const className = classnames("cell", customClass);
   let innerComponent;
-  if (component && !isHeader) {
+
+
+  // if (isHeader) {
+  //   debugger;
+  // }
+  if (component) {
     if (field) {
       const Component = component;
       innerComponent = <Component {...(field as ITableCellComponent).props as {[key: string]: any}}></Component>;

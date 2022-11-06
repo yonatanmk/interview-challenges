@@ -1,1 +1,1 @@
-export { default } from './Table'
+export { default, TableSortContext, SORT_ORDERS } from './Table'

@@ -10,6 +10,18 @@ export interface IPerson {
   accepted?: ITableCellComponent;
 }
 
+export interface ITableHeaderRow extends IPerson {
+  sortPredicate?: string;
+  sortOrder?: ISortOrder;
+}
+
+// export interface ITableRow extends IPerson {
+//   sortPredicate?: string;
+//   sortOrder?: ISortOrder;
+// }
+
+export type ISortOrder = 'asc' | 'desc';
+
 export interface ITableColumn {
   name: string;
   index: number;

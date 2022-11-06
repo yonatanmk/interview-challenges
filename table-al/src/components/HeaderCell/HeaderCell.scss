@@ -1,0 +1,26 @@
+@import "../../styles/variables/_palette";
+
+.HeaderCell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  button {
+    border: none;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      cursor: pointer;
+      color: #0B95FF;
+    }
+
+    svg {
+      height: 1rem;
+      width: 1rem;
+      margin-left: 4px;
+    }
+  }
+}
