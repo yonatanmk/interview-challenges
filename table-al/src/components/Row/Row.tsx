@@ -18,7 +18,7 @@ function Row({ row, columns, className, isHeader }: IRowProps) {
         col => <Cell 
           key={row.id.toString() + col.index} 
           field={row[col.field]} 
-          renderComponent={col.renderComponent} 
+          component={col.component}
           isHeader={isHeader}
         />
       )}

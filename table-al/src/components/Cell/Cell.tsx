@@ -7,14 +7,15 @@ type ICellProps = {
   renderComponent?: boolean;
   className?: string;
   isHeader?: boolean;
+  component?: React.ComponentType<any>;
 };
-function Cell({ field, className: customClass, renderComponent, isHeader = false }: ICellProps) {
+function Cell({ field, className: customClass, component, isHeader = false }: ICellProps) {
   const TableCell = isHeader ? 'th' : 'td';
   const className = classnames("cell", customClass, { "cell__header": isHeader });
   let innerComponent;
-  if (renderComponent && !isHeader) {
+  if (component && !isHeader) {
     if (field) {
-      const Component = (field as ITableCellComponent).component;
+      const Component = component;
       innerComponent = <Component {...(field as ITableCellComponent).props as {[key: string]: any}}></Component>
     } else {
       innerComponent = null

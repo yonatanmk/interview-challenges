@@ -14,16 +14,10 @@ export interface ITableColumn {
   name: string;
   index: number;
   field: keyof IPerson;
-  renderComponent?: boolean;
-}
-
-export interface ITableCell {
-  id: number;
-  text: string;
+  component?: React.ComponentType<any>
 }
 
 export interface ITableCellComponent {
-  component: React.ComponentType<any>;
   props: {
     [key: string]: any;
   }

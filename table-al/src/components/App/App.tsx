@@ -14,7 +14,6 @@ function App() {
       "postalZip": 558566,
       "country": "Vietnam",
       "link": {
-        "component": LinkCell,
         "props": {
           "text": "Facebook",
           "url": "https://www.facebook.com/",
@@ -39,7 +38,6 @@ function App() {
       "postalZip": 11365,
       "country": "South Korea",
       "link": {
-        "component": LinkCell,
         "props": {
           "text": "Google Maps",
           "url": "https://www.google.com/maps",
@@ -64,7 +62,6 @@ function App() {
       "postalZip": 631226,
       "country": "Netherlands",
       "link": {
-        "component": LinkCell,
         "props": {
           "text": "Google",
           "url": "https://www.google.com",
@@ -113,7 +110,8 @@ function App() {
       field: 'link',
       // sortFunction
       // filters
-      renderComponent: true,
+      // renderComponent: true,
+      component: LinkCell,
     },
   ]
   
