@@ -11,6 +11,7 @@ interface ITableProps {
   rows: IPerson[];
   columns: ITableColumn[];
   defaultSortPredicate: string;
+  backupSortPredicate: string;
 };
 
 export const SORT_ORDERS = Object.freeze({
@@ -33,7 +34,7 @@ export const TableSortContext = createContext({
   setSortOrder: (() => {}) as React.Dispatch<React.SetStateAction<ISortOrder>>,
 });
 
-function Table({ className, rows, columns, defaultSortPredicate }: ITableProps) {
+function Table({ className, rows, columns, defaultSortPredicate, backupSortPredicate }: ITableProps) {
   const [sortPredicate, setSortPredicate] = useState(defaultSortPredicate);
   const [sortOrder, setSortOrder] = useState(SORT_ORDERS.ASC as ISortOrder);
   const sortedColumns = [...columns].sort((a, b) => a.index > b.index ? 1 : -1);
@@ -43,7 +44,7 @@ function Table({ className, rows, columns, defaultSortPredicate }: ITableProps) 
   }));
   const sortByColumn = columns.find(col => col.field === sortPredicate) as ITableColumn;
   const sortByFunction = sortByColumn.sortByFunction || sortPredicate; // default to field value if there's no sort by function
-  const sortedRows = orderBy(rows, [sortByFunction, defaultSortPredicate], [sortOrder, sortOrder]); // maybe use new prop for backup sort? Current back up sort is defaultSortPredicate
+  const sortedRows = orderBy(rows, [sortByFunction, defaultSortPredicate || backupSortPredicate], [sortOrder, sortOrder]);
   const headerRow = columns.reduce((agg: Partial<ITableHeaderRow>, col) => {
     return {
       ...agg,

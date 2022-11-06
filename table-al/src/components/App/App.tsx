@@ -156,7 +156,12 @@ function App() {
   
   return (
     <div className="App">
-      <Table rows={rows} columns={columns} defaultSortPredicate="name" />
+      <Table 
+        rows={rows} 
+        columns={columns} 
+        defaultSortPredicate="name" 
+        backupSortPredicate="name"
+      />
       {/* <Table rows={rows}>
         <Row>
           <Cell className="light-blue" grow>a</Cell>
