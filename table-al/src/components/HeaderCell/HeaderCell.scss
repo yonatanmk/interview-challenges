@@ -7,11 +7,13 @@
 
   button {
     border: none;
-    padding: 0;
+    padding: 16px 8px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: bold;
+    height: 100%;
+    width: 100%;
 
     &:hover {
       cursor: pointer;
