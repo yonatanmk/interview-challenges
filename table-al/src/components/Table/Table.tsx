@@ -36,12 +36,12 @@ export const TableSortContext = createContext({
 function Table({ className, rows, columns, defaultSortPredicate }: ITableProps) {
   const [sortPredicate, setSortPredicate] = useState(defaultSortPredicate);
   const [sortOrder, setSortOrder] = useState(SORT_ORDERS.ASC as ISortOrder);
-  const sortedColumns = [...columns].sort((a, b) => a.index > b.index ? 1 : -1)
+  const sortedColumns = [...columns].sort((a, b) => a.index > b.index ? 1 : -1);
   const headerColumns = sortedColumns.map(col => ({
     ...col,
     component: HeaderCell,
-  }))
-  const sortedRows = orderBy(rows, [sortPredicate, defaultSortPredicate], [sortOrder])
+  }));
+  const sortedRows = orderBy(rows, [sortPredicate, defaultSortPredicate], [sortOrder]); // maybe use new prop for backup sort?
   const headerRow = columns.reduce((agg: Partial<ITableHeaderRow>, col) => {
     return {
       ...agg,
