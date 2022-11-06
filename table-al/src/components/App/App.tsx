@@ -7,6 +7,7 @@ import type { IPerson, ITableColumn } from '../../interfaces'
 function App() {
   const rows: IPerson[] = [
     {
+      "id": 12341643624,
       "name": "Patrick Watts",
       "phone": "1-920-517-1265",
       "email": "laoreet.ipsum@google.couk",
@@ -15,6 +16,7 @@ function App() {
       "country": "Vietnam"
     },
     {
+      "id": 123567653824,
       "name": "Jack Barrera",
       "phone": "1-806-473-9143",
       "email": "lectus.rutrum@hotmail.com",
@@ -23,6 +25,7 @@ function App() {
       "country": "China"
     },
     {
+      "id": 122536343564124,
       "name": "Jared Horne",
       "phone": "1-383-432-5382",
       "email": "non@protonmail.ca",
@@ -31,6 +34,7 @@ function App() {
       "country": "South Korea"
     },
     {
+      "id": 1234133562424,
       "name": "Xander Harding",
       "phone": "1-336-397-4318",
       "email": "aliquet.diam@aol.edu",
@@ -39,6 +43,7 @@ function App() {
       "country": "Canada"
     },
     {
+      "id": 12324163224,
       "name": "Cara Neal",
       "phone": "1-713-326-0414",
       "email": "morbi@protonmail.edu",
@@ -57,7 +62,7 @@ function App() {
     {
       name: 'Email',
       index: 3,
-      field: 'emaili',
+      field: 'email',
     },
     {
       name: 'Address',

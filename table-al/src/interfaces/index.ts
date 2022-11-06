@@ -1,4 +1,5 @@
 export interface IPerson {
+  id: string | number;
   name: string;
   phone: string;
   email: string;
@@ -10,9 +11,10 @@ export interface IPerson {
 export interface ITableColumn {
   name: string;
   index: number;
-  field: string;
+  field: keyof IPerson;
 }
 
 export interface ITableCell {
-  text: string
+  id: number;
+  text: string;
 }

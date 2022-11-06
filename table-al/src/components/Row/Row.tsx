@@ -1,18 +1,21 @@
 import classnames from "classnames";
 import "./Row.scss";
 import Cell from '../Cell'
-import type { ITableCell } from '../../interfaces'
+import type { IPerson, ITableColumn } from '../../interfaces'
 
 type IRowProps = {
   className?: string;
-  cells: ITableCell[];
+  row: IPerson;
+  columns: ITableColumn[];
 };
 
-function Row({ cells, className }: IRowProps) {
+function Row({ row, columns, className }: IRowProps) {
   
   return (
     <div className={classnames("row", className)}>
-      {cells.map(cell => <Cell cell={cell} />)}
+      {columns.map(
+        col => <Cell key={row.id.toString() + col.index} text={row[col.field] as string} />
+      )}
     </div>
   );
 }

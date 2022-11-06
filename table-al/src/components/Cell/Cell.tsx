@@ -1,16 +1,18 @@
 import classnames from "classnames";
 import "./Cell.scss";
-import type { ITableCell } from '../../interfaces'
+import type { ITableColumn } from '../../interfaces'
 
 type ICellProps = {
-  cell: ITableCell;
+  // cell: ITableColumn;
+  text: string;
   grow?: boolean;
   className?: string;
 };
-function Cell({ cell, className, grow = false }: ICellProps) {
+function Cell({ text, className, grow = false }: ICellProps) {
   return (
     <div className={classnames("cell", className, { grow })}>
-      <p>{cell.text}</p>
+      {/* <p>{cell.text}</p> */}
+      <p>{text}</p>
     </div>
   );
 }

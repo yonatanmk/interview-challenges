@@ -10,13 +10,26 @@ type ITableProps = {
 };
 
 function Table({ className, rows, columns }: ITableProps) {
-  const headerCells = columns.map(col => ({
-    text: col.name,
-  }))
+  const sortedColumns = [...columns].sort((a, b) => a.index > b.index ? 1 : -1)
+  // const headerCells = sortedColumns.map(col => ({
+  //   id: col.index,
+  //   text: col.name,
+  // }))
+  const headerRow = columns.reduce((agg: Partial<IPerson>, col) => {
+    return {
+      ...agg,
+      [col.field]: col.name,
+    }
+  }, {
+    id: 'headerRow',
+  } as Partial<IPerson>) as IPerson;
+
+  console.log(headerRow)
+
   return (
     <div className={classnames("table", className)}>
-      <Row className="row__header" cells={headerCells} />
-      <Row cells={headerCells} />
+      <Row key={headerRow.id} className="row__header" row={headerRow} columns={sortedColumns} />
+      {rows.map(row => <Row key={row.id} row={row} columns={sortedColumns} />)}
     </div>
   );
 }
