@@ -41,7 +41,9 @@ function Table({ className, rows, columns, defaultSortPredicate }: ITableProps) 
     ...col,
     component: HeaderCell,
   }));
-  const sortedRows = orderBy(rows, [sortPredicate, defaultSortPredicate], [sortOrder]); // maybe use new prop for backup sort?
+  const sortByColumn = columns.find(col => col.field === sortPredicate) as ITableColumn;
+  const sortByFunction = sortByColumn.sortByFunction || sortPredicate; // default to field value if there's no sort by function
+  const sortedRows = orderBy(rows, [sortByFunction, defaultSortPredicate], [sortOrder, sortOrder]); // maybe use new prop for backup sort? Current back up sort is defaultSortPredicate
   const headerRow = columns.reduce((agg: Partial<ITableHeaderRow>, col) => {
     return {
       ...agg,

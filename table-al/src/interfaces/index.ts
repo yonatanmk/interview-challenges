@@ -26,7 +26,8 @@ export interface ITableColumn {
   name: string;
   index: number;
   field: keyof IPerson;
-  component?: React.ComponentType<any>
+  component?: React.ComponentType<any>;
+  sortByFunction?: (row: IPerson) => any;
 }
 
 export interface ITableCellComponent {

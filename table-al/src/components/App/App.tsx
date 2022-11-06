@@ -130,18 +130,13 @@ function App() {
       name: 'Name',
       index: 1,
       field: 'name',
-      // sortFunction
-      // filters
-      // renderComponent
     },
     {
       name: 'Link',
       index: 7,
       field: 'link',
-      // sortFunction
-      // filters
-      // renderComponent: true,
       component: LinkCell,
+      sortByFunction: row => row?.link?.props?.text
     },
     {
       name: 'Accepted',
@@ -151,6 +146,11 @@ function App() {
       // filters
       // renderComponent: true,
       component: AcceptedCell,
+      sortByFunction: row => {
+        if (row?.accepted?.props?.accepted === true) return 1;
+        if (row?.accepted?.props?.accepted === false) return 2;
+        return 3
+      }
     },
   ]
   
