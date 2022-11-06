@@ -1,6 +1,6 @@
 import type { IPerson, ITableColumn } from '../../interfaces'
 import LinkCell from '../LinkCell'
-import AcceptedCell from '../AcceptedCell'
+import CheckmarkCell from '../CheckmarkCell'
 
 const booleanSortFunctionGenerator = (field: string) => (row: any) =>{ // FIX TS
   if (row?.[field]?.props?.affirmative === true) return 1;
@@ -148,7 +148,7 @@ export const peopleColumns: ITableColumn[] = [
     // sortFunction
     // filters
     // renderComponent: true,
-    component: AcceptedCell,
+    component: CheckmarkCell,
     // sortByFunction: row => {
     //   if (row?.accepted?.props?.accepted === true) return 1;
     //   if (row?.accepted?.props?.accepted === false) return 2;
