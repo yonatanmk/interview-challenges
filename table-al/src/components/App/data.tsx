@@ -1,4 +1,4 @@
-import type { IPerson, ITableColumn } from '../../interfaces'
+import type { IPerson, ITableColumn, ISong } from '../../interfaces'
 import LinkCell from '../LinkCell'
 import CheckmarkCell from '../CheckmarkCell'
 
@@ -103,7 +103,7 @@ export const peopleRows: IPerson[] = [
   },
 ];
 
-export const peopleColumns: ITableColumn[] = [
+export const peopleColumns: ITableColumn<IPerson>[] = [
   {
     name: 'Country',
     index: 6,
@@ -158,80 +158,85 @@ export const peopleColumns: ITableColumn[] = [
   },
 ];
 
-// export const musicRows: ISong[] = [
-//   {
-//     id: 223434,
-//     name: 'Bright Whites',
-//     artist: 'Kishi Bashi',
-//     album: '151a',
-//     duration: 253000,
-//     liked: {
-//       props: {
-//         accepted: true,
-//       },
-//     },
-//   },
-//   {
-//     id: 223435,
-//     name: 'Go Do',
-//     artist: 'Jonsi',
-//     album: 'Jonsi - Go',
-//     duration: 280000,
-//   },
-//   {
-//     id: 223436,
-//     name: 'Genghis Khan',
-//     artist: 'Miike Snow',
-//     duration: 210000,
-//   },
-//   {
-//     id: 223437,
-//     name: 'Boy Lilikoi',
-//     artist: 'Jonsi',
-//     album: 'Jonsi - Go',
-//     duration: 270000,
-//     liked: {
-//       props: {
-//         accepted: false,
-//       },
-//     },
-//   },
-//   {
-//     id: 223438,
-//     name: 'Fluorescent Adolescent',
-//     artist: 'Arctic Monkeys',
-//     album: 'Favourite Worst Nightmare',
-//     duration: 178000,
-//   },
-// ];
+export const songRows: ISong[] = [
+  {
+    id: 223434,
+    name: 'Bright Whites',
+    artist: 'Kishi Bashi',
+    album: '151a',
+    duration: 253000,
+    liked: {
+      props: {
+        affirmative: true,
+      },
+    },
+  },
+  {
+    id: 223435,
+    name: 'Go Do',
+    artist: 'Jonsi',
+    album: 'Jonsi - Go',
+    duration: 280000,
+  },
+  {
+    id: 223436,
+    name: 'Genghis Khan',
+    artist: 'Miike Snow',
+    duration: 210000,
+  },
+  {
+    id: 223437,
+    name: 'Boy Lilikoi',
+    artist: 'Jonsi',
+    album: 'Jonsi - Go',
+    duration: 270000,
+    liked: {
+      props: {
+        affirmative: false,
+      },
+    },
+  },
+  {
+    id: 223438,
+    name: 'Fluorescent Adolescent',
+    artist: 'Arctic Monkeys',
+    album: 'Favourite Worst Nightmare',
+    duration: 178000,
+  },
+];
 
-// export const songColumns: ITableColumn[] = [
-//   {
-//     name: 'Artist',
-//     index: 2,
-//     field: 'artist',
-//   },
-//   {
-//     name: 'Duration',
-//     index: 4,
-//     field: 'duration',
-//     // formatFunction
-//   },
-//   {
-//     name: 'Name',
-//     index: 1,
-//     field: 'name',
-//   },
-//   {
-//     name: 'Album',
-//     index: 3,
-//     field: 'album',
-//   },
-//   {
-//     name: 'Liked',
-//     index: 5,
-//     field: 'liked',
-//     component: LinkCell,
-//     sortByFunction: booleanSortFunctionGenerator('liked'),
-//   },
-// ];
+export const songColumns: ITableColumn<ISong>[] = [
+  {
+    name: 'Artist',
+    index: 2,
+    field: 'artist',
+  },
+  {
+    name: 'Duration',
+    index: 4,
+    field: 'duration',
+    formatFunction: (milliseconds: number): string => {
+      const minutes = Math.floor(milliseconds / 60000);
+      const seconds = ((milliseconds % 60000) / 1000)
+      const roundedSeconds = seconds.toFixed(0);
+      return minutes + ":" + (seconds < 9.5 ? '0' : '') + roundedSeconds;
+    }
+  },
+  {
+    name: 'Name',
+    index: 1,
+    field: 'name',
+  },
+  {
+    name: 'Album',
+    index: 3,
+    field: 'album',
+  },
+  {
+    name: 'Liked',
+    index: 5,
+    field: 'liked',
+    component: CheckmarkCell,
+    sortByFunction: booleanSortFunctionGenerator('liked'),
+  },
+];

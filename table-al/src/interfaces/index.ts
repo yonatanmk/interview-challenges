@@ -10,6 +10,15 @@ export interface IPerson {
   accepted?: ITableCellComponent;
 }
 
+export interface ISong {
+  id: string | number;
+  name: string;
+  artist: string,
+  album?: string,
+  duration: number,
+  liked?: ITableCellComponent;
+}
+
 export interface ITableHeaderRow extends IPerson {
   sortPredicate?: string;
   sortOrder?: ISortOrder;
@@ -22,12 +31,14 @@ export interface ITableHeaderRow extends IPerson {
 
 export type ISortOrder = 'asc' | 'desc';
 
-export interface ITableColumn {
+export interface ITableColumn<T> {
   name: string;
   index: number;
-  field: keyof IPerson;
+  // field: keyof T;
+  field: string;
   component?: React.ComponentType<any>;
   sortByFunction?: (row: IPerson) => any;
+  formatFunction?: (value: any) => number | string;
 }
 
 export interface ITableCellComponent {

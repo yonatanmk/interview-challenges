@@ -1,23 +1,19 @@
 import classnames from "classnames";
 import "./Cell.scss";
-import type { ITableCellComponent } from '../../interfaces';
+import type { ITableCellComponent, ITableColumn } from '../../interfaces';
 
 type ICellProps = {
   field?: string | number | ITableCellComponent;
+  column: ITableColumn<any>;
   className?: string;
   isHeader?: boolean;
   component?: React.ComponentType<any>;
 };
-function Cell({ field, className: customClass, component, isHeader = false }: ICellProps) {
+function Cell({ field, column, className: customClass, component, isHeader = false }: ICellProps) {
   const TableCell = isHeader ? 'th' : 'td';
   const className = classnames("cell", customClass, { "cell__header": isHeader });
-  // const className = classnames("cell", customClass);
   let innerComponent;
 
-
-  // if (isHeader) {
-  //   debugger;
-  // }
   if (component) {
     if (field) {
       const Component = component;
@@ -26,7 +22,8 @@ function Cell({ field, className: customClass, component, isHeader = false }: IC
       innerComponent = null;
     }
   } else {
-    innerComponent = <p>{field as string | number}</p>;
+    const text = column.formatFunction ? column.formatFunction(field) : field as  string | number;
+    innerComponent = <p>{text}</p>;
   }
   return (
     <TableCell className={className}>

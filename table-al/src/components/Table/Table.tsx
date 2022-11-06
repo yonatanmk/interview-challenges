@@ -6,10 +6,11 @@ import Row from '../Row'
 import type { IPerson, ITableColumn, ITableHeaderRow, ISortOrder } from '../../interfaces'
 import HeaderCell from '../HeaderCell';
 
-interface ITableProps {
+interface ITableProps<T> {
   className?: string;
-  rows: IPerson[];
-  columns: ITableColumn[];
+  // rows: T[];
+  rows: any[];
+  columns: ITableColumn<T>[];
   defaultSortPredicate: string;
   backupSortPredicate: string;
 };
@@ -26,7 +27,8 @@ export const SORT_ORDERS = Object.freeze({
 //   setSortOrder: React.Dispatch<React.SetStateAction<ISortOrder>>;
 // }
 
-// export const TableSortContext = createContext<ITableSortContext>({
+// export const TableSortContext = createContext<ITableSortContext>({ ... })
+
 export const TableSortContext = createContext({
   sortPredicate: 'name',
   sortOrder: SORT_ORDERS.ASC as ISortOrder,
@@ -34,7 +36,7 @@ export const TableSortContext = createContext({
   setSortOrder: (() => {}) as React.Dispatch<React.SetStateAction<ISortOrder>>,
 });
 
-function Table({ className, rows, columns, defaultSortPredicate, backupSortPredicate }: ITableProps) {
+function Table<T extends object>({ className, rows, columns, defaultSortPredicate, backupSortPredicate }: ITableProps<T>) {
   const [sortPredicate, setSortPredicate] = useState(defaultSortPredicate);
   const [sortOrder, setSortOrder] = useState(SORT_ORDERS.ASC as ISortOrder);
   const sortedColumns = [...columns].sort((a, b) => a.index > b.index ? 1 : -1);
@@ -42,7 +44,7 @@ function Table({ className, rows, columns, defaultSortPredicate, backupSortPredi
     ...col,
     component: HeaderCell,
   }));
-  const sortByColumn = columns.find(col => col.field === sortPredicate) as ITableColumn;
+  const sortByColumn = columns.find(col => col.field === sortPredicate) as ITableColumn<T>;
   const sortByFunction = sortByColumn.sortByFunction || sortPredicate; // default to field value if there's no sort by function
   const sortedRows = orderBy(rows, [sortByFunction, defaultSortPredicate || backupSortPredicate], [sortOrder, sortOrder]);
   const headerRow = columns.reduce((agg: Partial<ITableHeaderRow>, col) => {
