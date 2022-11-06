@@ -11,7 +11,6 @@ type IRowProps = {
 };
 
 function Row({ row, columns, className, isHeader }: IRowProps) {  
-  console.log(row)
   return (
     <tr className={classnames("row", className)}>
       {columns.map(

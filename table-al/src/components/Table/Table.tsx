@@ -1,4 +1,5 @@
 import classnames from "classnames";
+import orderBy from 'lodash/orderBy';
 import "./Table.scss";
 import Row from '../Row'
 import type { IPerson, ITableColumn } from '../../interfaces'
@@ -19,6 +20,11 @@ function Table({ className, rows, columns }: ITableProps) {
   }, {
     id: 'headerRow',
   } as Partial<IPerson>) as IPerson;
+
+  console.log('ROWS')
+  console.log(rows)
+  console.log('SORTED ROWS')
+  console.log(orderBy(rows, ['name'], ['asc']))
 
   return (
     <table className={classnames("table", className)}>
