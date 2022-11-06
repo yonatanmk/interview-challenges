@@ -1,0 +1,10 @@
+@import "../../styles/variables/_palette";
+
+.row {
+  display: flex;
+  flex-direction: row;
+
+  &__header {
+    background-color: $table-header-gray;
+  }
+}

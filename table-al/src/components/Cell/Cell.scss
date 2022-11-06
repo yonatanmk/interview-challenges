@@ -1,0 +1,20 @@
+@import "../../styles/variables/_palette";
+
+.cell {
+  width: 100px;
+  padding: 16px 8px;
+  width: auto;
+  flex-grow: 1;
+  // background-color: red;
+  box-sizing: border-box;;
+  border: 1px solid $table-border-gray;
+
+  p {
+    margin: 0;
+  }
+  
+  // &.grow {
+  //   width: auto;
+  //   flex-grow: 1;
+  // }
+}
