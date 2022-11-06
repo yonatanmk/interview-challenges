@@ -1,6 +1,10 @@
 @import "../../styles/variables/_palette";
 
 .table {
+  width: 100%;
   margin: 10px;
-  border: 1px solid $table-border-gray;;
+  // background-color: red;
+  // border: 1px solid $table-border-gray;
+  border-collapse: collapse
+
 }

@@ -27,10 +27,10 @@ function Table({ className, rows, columns }: ITableProps) {
   console.log(headerRow)
 
   return (
-    <div className={classnames("table", className)}>
-      <Row key={headerRow.id} className="row__header" row={headerRow} columns={sortedColumns} />
+    <table className={classnames("table", className)}>
+      <Row key={headerRow.id} className="row__header" row={headerRow} columns={sortedColumns} isHeader/>
       {rows.map(row => <Row key={row.id} row={row} columns={sortedColumns} />)}
-    </div>
+    </table>
   );
 }
 

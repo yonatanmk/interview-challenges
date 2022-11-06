@@ -7,16 +7,16 @@ type IRowProps = {
   className?: string;
   row: IPerson;
   columns: ITableColumn[];
+  isHeader?: boolean;
 };
 
-function Row({ row, columns, className }: IRowProps) {
-  
+function Row({ row, columns, className, isHeader }: IRowProps) {  
   return (
-    <div className={classnames("row", className)}>
+    <tr className={classnames("row", className)}>
       {columns.map(
-        col => <Cell key={row.id.toString() + col.index} text={row[col.field] as string} />
+        col => <Cell key={row.id.toString() + col.index} text={row[col.field] as string} isHeader={isHeader}/>
       )}
-    </div>
+    </tr>
   );
 }
 
