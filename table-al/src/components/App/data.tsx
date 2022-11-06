@@ -1,10 +1,10 @@
-import type { IPerson, ITableColumn, ISong } from '../../interfaces'
+import type { IPerson, ITableColumn } from '../../interfaces'
 import LinkCell from '../LinkCell'
 import AcceptedCell from '../AcceptedCell'
 
 const booleanSortFunctionGenerator = (field: string) => (row: any) =>{ // FIX TS
-  if (row?.[field]?.props?.accepted === true) return 1;
-  if (row?.[field]?.props?.accepted === false) return 2;
+  if (row?.[field]?.props?.affirmative === true) return 1;
+  if (row?.[field]?.props?.affirmative === false) return 2;
   return 3
 }
 
@@ -25,7 +25,7 @@ export const peopleRows: IPerson[] = [
     },
     "accepted": {
       "props": {
-        "accepted": true,
+        "affirmative": true,
       }
     },
   },
@@ -39,7 +39,7 @@ export const peopleRows: IPerson[] = [
     "country": "China",
     "accepted": {
       "props": {
-        "accepted": false,
+        "affirmative": false,
       }
     },
   },
@@ -68,7 +68,7 @@ export const peopleRows: IPerson[] = [
     "country": "Canada",
     "accepted": {
       "props": {
-        "accepted": true,
+        "affirmative": true,
       },
     },
   },
@@ -88,7 +88,7 @@ export const peopleRows: IPerson[] = [
     },
     "accepted": {
       "props": {
-        "accepted": false,
+        "affirmative": false,
       },
     },
   },

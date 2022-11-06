@@ -4,10 +4,10 @@ import { ImCheckmark, ImCross } from "react-icons/im";
 import classnames from "classnames";
 
 export type IAcceptedCellProps = {
-  accepted: boolean;
+  affirmative: boolean;
 };
 
-function AcceptedCell({ accepted }: IAcceptedCellProps) {
+function AcceptedCell({ affirmative }: IAcceptedCellProps) {
   // return (
   //   <IconContext.Provider value={{ color: accepted ? "#13A850" : "#C6332E", size: '2rem'}}>
   //     <div className="AcceptedCell">
@@ -16,8 +16,8 @@ function AcceptedCell({ accepted }: IAcceptedCellProps) {
   //   </IconContext.Provider>
   // )
   return (
-    <div className={classnames("AcceptedCell", { "AcceptedCell__accepted": accepted, "AcceptedCell__rejected": !accepted })}>
-      {accepted ? <ImCheckmark /> : <ImCross />}
+    <div className={classnames("AcceptedCell", { "AcceptedCell__affirmative": affirmative, "AcceptedCell__negative": !affirmative })}>
+      {affirmative ? <ImCheckmark /> : <ImCross />}
     </div>
   )
 }

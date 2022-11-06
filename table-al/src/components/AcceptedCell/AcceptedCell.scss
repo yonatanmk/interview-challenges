@@ -10,11 +10,11 @@
     width: 2rem;
   }
 
-  &__accepted {
-    color: $accepted-green;
+  &__affirmative {
+    color: $success-green;
   }
 
-  &__rejected {
+  &__negative {
     color: $failed-red;
   }
 }
