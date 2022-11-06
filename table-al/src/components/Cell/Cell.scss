@@ -1,8 +1,9 @@
 @import "../../styles/variables/_palette";
+@import "../../styles/variables/_sizes";
 
 .cell {
+  @include table-cell-padding;
   width: 100px;
-  padding: 16px 8px;
   width: auto;
   box-sizing: border-box;;
   border: 1px solid $table-border-gray;
