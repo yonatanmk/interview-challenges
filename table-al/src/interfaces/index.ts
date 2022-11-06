@@ -6,8 +6,8 @@ export interface IPerson {
   address: string;
   postalZip: string | number;
   country: string;
-  linkText?: string;
   link?: ITableCellComponent;
+  accepted?: ITableCellComponent;
 }
 
 export interface ITableColumn {

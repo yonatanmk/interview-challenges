@@ -6,7 +6,11 @@ export type ILinkCellProps = {
 };
 
 function LinkCell({ text, url }: ILinkCellProps) {
-  return <a href={url}>{text}</a>  
+  return (
+    <div className="LinkCell">
+      <a href={url}>{text}</a>  
+    </div>
+  )
 }
 
 export default LinkCell;

@@ -2,6 +2,7 @@ import "./App.scss";
 import Table from '../Table'
 import type { IPerson, ITableColumn } from '../../interfaces'
 import LinkCell from '../LinkCell'
+import AcceptedCell from '../AcceptedCell'
 
 function App() {
   const rows: IPerson[] = [
@@ -18,7 +19,12 @@ function App() {
           "text": "Facebook",
           "url": "https://www.facebook.com/",
         }
-      }
+      },
+      "accepted": {
+        "props": {
+          "accepted": true,
+        }
+      },
     },
     {
       "id": 123567653824,
@@ -28,6 +34,11 @@ function App() {
       "address": "P.O. Box 291, 8088 Aenean Road",
       "postalZip": 23704,
       "country": "China",
+      "accepted": {
+        "props": {
+          "accepted": false,
+        }
+      },
     },
     {
       "id": 122536343564124,
@@ -41,8 +52,8 @@ function App() {
         "props": {
           "text": "Google Maps",
           "url": "https://www.google.com/maps",
-        }
-      }
+        },
+      },
     },
     {
       "id": 1234133562424,
@@ -52,6 +63,11 @@ function App() {
       "address": "398-9679 Sollicitudin St.",
       "postalZip": "8788 YA",
       "country": "Canada",
+      "accepted": {
+        "props": {
+          "accepted": true,
+        },
+      },
     },
     {
       "id": 12324163224,
@@ -65,9 +81,14 @@ function App() {
         "props": {
           "text": "Google",
           "url": "https://www.google.com",
-        }
-      }
-    }
+        },
+      },
+      "accepted": {
+        "props": {
+          "accepted": false,
+        },
+      },
+    },
   ];
 
   const columns: ITableColumn[] = [
@@ -112,6 +133,15 @@ function App() {
       // filters
       // renderComponent: true,
       component: LinkCell,
+    },
+    {
+      name: 'Accepted',
+      index: 8,
+      field: 'accepted',
+      // sortFunction
+      // filters
+      // renderComponent: true,
+      component: AcceptedCell,
     },
   ]
   

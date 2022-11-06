@@ -16,12 +16,12 @@ function Cell({ field, className: customClass, component, isHeader = false }: IC
   if (component && !isHeader) {
     if (field) {
       const Component = component;
-      innerComponent = <Component {...(field as ITableCellComponent).props as {[key: string]: any}}></Component>
+      innerComponent = <Component {...(field as ITableCellComponent).props as {[key: string]: any}}></Component>;
     } else {
-      innerComponent = null
+      innerComponent = null;
     }
   } else {
-    innerComponent = <p>{field as string | number}</p>
+    innerComponent = <p>{field as string | number}</p>;
   }
   return (
     <TableCell className={className}>
