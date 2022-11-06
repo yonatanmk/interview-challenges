@@ -13,7 +13,14 @@ function App() {
       "email": "laoreet.ipsum@google.couk",
       "address": "Ap #872-1390 Nascetur Ave",
       "postalZip": 558566,
-      "country": "Vietnam"
+      "country": "Vietnam",
+      "link": {
+        "name": "LinkCell",
+        "props": {
+          "text": "Facebook",
+          "url": "https://www.facebook.com/",
+        }
+      }
     },
     {
       "id": 123567653824,
@@ -22,7 +29,7 @@ function App() {
       "email": "lectus.rutrum@hotmail.com",
       "address": "P.O. Box 291, 8088 Aenean Road",
       "postalZip": 23704,
-      "country": "China"
+      "country": "China",
     },
     {
       "id": 122536343564124,
@@ -31,7 +38,14 @@ function App() {
       "email": "non@protonmail.ca",
       "address": "5541 Diam Ave",
       "postalZip": 11365,
-      "country": "South Korea"
+      "country": "South Korea",
+      "link": {
+        "name": "LinkCell",
+        "props": {
+          "text": "Google Maps",
+          "url": "https://www.google.com/maps",
+        }
+      }
     },
     {
       "id": 1234133562424,
@@ -40,7 +54,7 @@ function App() {
       "email": "aliquet.diam@aol.edu",
       "address": "398-9679 Sollicitudin St.",
       "postalZip": "8788 YA",
-      "country": "Canada"
+      "country": "Canada",
     },
     {
       "id": 12324163224,
@@ -49,7 +63,14 @@ function App() {
       "email": "morbi@protonmail.edu",
       "address": "6266 Morbi Avenue",
       "postalZip": 631226,
-      "country": "Netherlands"
+      "country": "Netherlands",
+      "link": {
+        "name": "LinkCell",
+        "props": {
+          "text": "Google",
+          "url": "https://www.google.com",
+        }
+      }
     }
   ];
 
@@ -86,6 +107,14 @@ function App() {
       // sortFunction
       // filters
       // renderComponent
+    },
+    {
+      name: 'Link',
+      index: 7,
+      field: 'link',
+      // sortFunction
+      // filters
+      renderComponent: true,
     },
   ]
   

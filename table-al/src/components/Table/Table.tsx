@@ -24,12 +24,14 @@ function Table({ className, rows, columns }: ITableProps) {
     id: 'headerRow',
   } as Partial<IPerson>) as IPerson;
 
-  console.log(headerRow)
-
   return (
     <table className={classnames("table", className)}>
-      <Row key={headerRow.id} className="row__header" row={headerRow} columns={sortedColumns} isHeader/>
-      {rows.map(row => <Row key={row.id} row={row} columns={sortedColumns} />)}
+      <thead>
+        <Row key={headerRow.id} className="row__header" row={headerRow} columns={sortedColumns} isHeader/>
+      </thead>
+      <tbody>
+        {rows.map(row => <Row key={row.id} row={row} columns={sortedColumns} />)}
+      </tbody>
     </table>
   );
 }

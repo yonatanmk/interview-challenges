@@ -11,10 +11,16 @@ type IRowProps = {
 };
 
 function Row({ row, columns, className, isHeader }: IRowProps) {  
+  console.log(row)
   return (
     <tr className={classnames("row", className)}>
       {columns.map(
-        col => <Cell key={row.id.toString() + col.index} text={row[col.field] as string} isHeader={isHeader}/>
+        col => <Cell 
+          key={row.id.toString() + col.index} 
+          field={row[col.field]} 
+          renderComponent={col.renderComponent} 
+          isHeader={isHeader}
+        />
       )}
     </tr>
   );
