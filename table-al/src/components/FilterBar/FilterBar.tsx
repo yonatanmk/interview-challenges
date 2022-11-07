@@ -7,7 +7,7 @@ export type IFilterBarProps = {
 function FilterBar({ children }: IFilterBarProps) {
   return (
     <div className="FilterBar">
-      <p>Filters</p>
+      <p className="FilterBar__title">Filters</p>
       {children}
     </div>
   )

@@ -2,7 +2,8 @@
 @import "../../styles/variables/_sizes";
 
 .Multiselect {
-  &__input {
-    font-size: 1rem !important;
-  }
+  min-width: 180px;
+  // &__input {
+  //   font-size: 1rem !important;
+  // }
 }

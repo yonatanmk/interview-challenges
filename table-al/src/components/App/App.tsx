@@ -51,8 +51,8 @@ function App() {
   return (
     <div className="App">
         <FilterBar>
-          <Search search={personSearch} setSearch={setPersonSearch} />
-          <Multiselect options={countryOptions} onChange={handleCountrySelectChange}/>
+          <Search label="Search People" search={personSearch} setSearch={setPersonSearch} />
+          <Multiselect options={countryOptions} placeholder="Filter by Country" onChange={handleCountrySelectChange}/>
         </FilterBar>
         <div className="App__container">
           <Table 
@@ -64,7 +64,7 @@ function App() {
           />
         </div>
         <FilterBar>
-          <Search search={songSearch} setSearch={setSongSearch} />
+          <Search label="Search Songs" search={songSearch} setSearch={setSongSearch} />
         </FilterBar>
         <div className="App__container">
           <Table

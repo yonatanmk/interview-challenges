@@ -1,5 +1,12 @@
 @import "../../styles/variables/_palette";
 
-.Search input {
-  font-size: 1rem;
+.Search {
+  input {
+    font-size: 1rem;
+  }
+  
+  label {
+    color: $table-header-gray;
+    margin-right: 0.5rem;
+  }
 }
