@@ -15,4 +15,8 @@
     font-size: 24px;
     transform: translateY(-2px);
   }
+
+  & > * {
+    margin-right: 1rem;
+  }
 }

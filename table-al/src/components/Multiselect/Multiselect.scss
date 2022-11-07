@@ -1,0 +1,8 @@
+@import "../../styles/variables/_palette";
+@import "../../styles/variables/_sizes";
+
+.Multiselect {
+  &__input {
+    font-size: 1rem !important;
+  }
+}

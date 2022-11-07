@@ -1,16 +1,20 @@
 import "./App.scss";
 import { useState } from 'react';
+// import Select from 'react-select';
+import uniq from 'lodash/uniq';
 import Table from '../Table';
 import FilterBar from '../FilterBar';
 import Search from '../Search';
+import Multiselect from '../Multiselect'
 import { peopleRows, peopleColumns, songRows, songColumns } from './data';
 import type { IFilter } from '../../interfaces';
 import { FILTER_TYPES } from '../../util';
 
+
 function App() {
   const [personSearch, setPersonSearch] = useState('');
   const [songSearch, setSongSearch] = useState('');
-  const [countryFilters, setCountryFilters] = useState(['China', 'Netherlands']);
+  const [countryFilters, setCountryFilters] = useState<string[]>([]);
   // const [countryFilters, setCountryFilters] = useState([]);
   const peopleFilters: IFilter[] = [
     {
@@ -24,6 +28,18 @@ function App() {
       value: countryFilters,
     },
   ];
+  const countryOptions = uniq(peopleRows.map(row => row.country)).map(value => ({
+    label: value,
+    value,
+  }));
+
+  const handleCountrySelectChange = (selected: { label: string, value: string }[]) => {
+    console.log('handleCountrySelectChange')
+    console.log(selected)
+    setCountryFilters(selected.map(option => option.value))
+  }
+
+
   const songFilters: IFilter[] = [
     {
       type: FILTER_TYPES.SEARCH,
@@ -36,6 +52,7 @@ function App() {
     <div className="App">
         <FilterBar>
           <Search search={personSearch} setSearch={setPersonSearch} />
+          <Multiselect options={countryOptions} onChange={handleCountrySelectChange}/>
         </FilterBar>
         <div className="App__container">
           <Table 
