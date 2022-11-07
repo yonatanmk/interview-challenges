@@ -1,16 +1,14 @@
 import "./FilterBar.scss";
-import Search from '../Search';
 
 export type IFilterBarProps = {
-  // text: string;
-  // url: string;
+  children: React.ReactNode;
 };
 
-function FilterBar({ }: IFilterBarProps) {
+function FilterBar({ children }: IFilterBarProps) {
   return (
     <div className="FilterBar">
       <p>Filters</p>
-      <Search />
+      {children}
     </div>
   )
 }

@@ -1,17 +1,12 @@
 import "./Search.scss";
-import React, { useContext } from 'react';
-import { PersonFilterContext } from '../../contexts';
 
 export type ISearchProps = {
-  // text: string;
-  // url: string;
+  search: string;
+  setSearch: React.Dispatch<React.SetStateAction<string>>
 };
 
-function Search({ }: ISearchProps) {
-  const { search, setSearch } = useContext(PersonFilterContext);
+function Search({ search, setSearch }: ISearchProps) {
   const handleSearch = (e: React.FormEvent<HTMLInputElement>) => {
-    console.log('HANDLE SAERCH')
-    console.log(e)
     setSearch(e.currentTarget.value);
   }
   return (

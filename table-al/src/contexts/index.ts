@@ -3,11 +3,6 @@ import React, { createContext } from 'react';
 import { SORT_ORDERS } from '../util'
 import type { ISortOrder } from '../interfaces'
 
-export const PersonFilterContext = createContext({
-  search: '',
-  setSearch:( () => {}) as React.Dispatch<React.SetStateAction<string>>,
-});
-
 // interface ITableSortContext {
 //   sortPredicate: string;
 //   sortOrder: ISortOrder;
