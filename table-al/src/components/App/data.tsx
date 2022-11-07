@@ -160,7 +160,7 @@ export const peopleColumns: ITableColumn<IPerson>[] = [
 
 export const songRows: ISong[] = [
   {
-    id: 223434,
+    _id: 223434,
     name: 'Bright Whites',
     artist: 'Kishi Bashi',
     album: '151a',
@@ -172,20 +172,20 @@ export const songRows: ISong[] = [
     },
   },
   {
-    id: 223435,
+    _id: 223435,
     name: 'Go Do',
     artist: 'Jonsi',
     album: 'Jonsi - Go',
     duration: 280000,
   },
   {
-    id: 223436,
+    _id: 223436,
     name: 'Genghis Khan',
     artist: 'Miike Snow',
     duration: 210000,
   },
   {
-    id: 223437,
+    _id: 223437,
     name: 'Boy Lilikoi',
     artist: 'Jonsi',
     album: 'Jonsi - Go',
@@ -197,7 +197,7 @@ export const songRows: ISong[] = [
     },
   },
   {
-    id: 223438,
+    _id: 223438,
     name: 'Fluorescent Adolescent',
     artist: 'Arctic Monkeys',
     album: 'Favourite Worst Nightmare',

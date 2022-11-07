@@ -11,7 +11,7 @@ export interface IPerson {
 }
 
 export interface ISong {
-  id: string | number;
+  _id: string | number;
   name: string;
   artist: string,
   album?: string,

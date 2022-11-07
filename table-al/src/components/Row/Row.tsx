@@ -14,8 +14,8 @@ function Row({ row, columns, className, isHeader }: IRowProps) {
   return (
     <tr className={classnames("row", className)}>
       {columns.map(
-        col => <Cell 
-          key={row.id.toString() + col.index} 
+        (col, index) => <Cell 
+          key={index}
           field={row[col.field]}
           column={col}
           component={col.component}

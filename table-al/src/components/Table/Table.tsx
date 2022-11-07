@@ -46,7 +46,6 @@ function Table<T extends object>({ className, rows, columns, defaultSortPredicat
       },
     }
   }, {
-    id: 'headerRow',
     sortPredicate,
     sortOrder,
   } as Partial<ITableHeaderRow>) as ITableHeaderRow;
@@ -55,11 +54,11 @@ function Table<T extends object>({ className, rows, columns, defaultSortPredicat
     <table className={classnames("table", className)}>
       <thead>
         <TableSortContext.Provider value={{ sortPredicate, setSortPredicate, sortOrder, setSortOrder }}>
-          <Row key={headerRow.id} className="row__header" row={headerRow} columns={headerColumns} isHeader/>
+          <Row className="row__header" row={headerRow} columns={headerColumns} isHeader/>
         </TableSortContext.Provider>
       </thead>
       <tbody>
-        {sortedRows.map(row => <Row key={row.id} row={row} columns={sortedColumns} />)}
+        {sortedRows.map((row, index) => <Row key={index} row={row} columns={sortedColumns} />)}
       </tbody>
     </table>
   );
