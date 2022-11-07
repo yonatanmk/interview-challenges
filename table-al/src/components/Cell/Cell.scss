@@ -1,5 +1,5 @@
 @import "../../styles/variables/_palette";
-@import "../../styles/variables/_sizes";
+@import "../../styles/variables/_mixins";
 
 .cell {
   @include table-cell-padding;
