@@ -20,8 +20,8 @@ export const filterRows = (rows: any, filters: IFilter[]) => {
     return filters.every((filter: IFilter) => {
       if (filter.type === FILTER_TYPES.SEARCH && typeof filter.value === 'string') {
         return searchMatch(row[filter.field], filter.value.toLowerCase())
-      } else if (filter.type === FILTER_TYPES.SELECT && Array.isArray(filter.value) && filter.value[0]) {
-        return includes(filter.value, row[filter.field]) // filter.value array has the value of row[filter.field]
+      } else if (filter.type === FILTER_TYPES.SELECT && Array.isArray(filter.value)) {
+        return filter.value.length === 0 || includes(filter.value, row[filter.field]) // filter.value array has the value of row[filter.field]
       } else {
         return false;
       }

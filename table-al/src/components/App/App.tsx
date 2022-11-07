@@ -10,11 +10,18 @@ import { FILTER_TYPES } from '../../util';
 function App() {
   const [personSearch, setPersonSearch] = useState('');
   const [songSearch, setSongSearch] = useState('');
+  const [countryFilters, setCountryFilters] = useState(['China', 'Netherlands']);
+  // const [countryFilters, setCountryFilters] = useState([]);
   const peopleFilters: IFilter[] = [
     {
       type: FILTER_TYPES.SEARCH,
       field: 'name',
       value: personSearch,
+    },
+    {
+      type: FILTER_TYPES.SELECT,
+      field: 'country',
+      value: countryFilters,
     },
   ];
   const songFilters: IFilter[] = [
