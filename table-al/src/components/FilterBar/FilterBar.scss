@@ -2,7 +2,7 @@
 
 .FilterBar {
   background-color: #2F2963;
-  height: 3rem;
+  height: 4rem;
   padding: 0 2rem;
 
   display: flex;
@@ -15,11 +15,11 @@
   p { 
     margin: 0 2rem 0 0;
     font-weight: bold;
-    font-size: 24px;
+    font-size: 32px;
     transform: translateY(-2px);
   }
 
   & > * {
-    margin-right: 1rem;
+    margin-right: 2rem;
   }
 }
