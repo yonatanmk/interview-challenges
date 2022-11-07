@@ -1,10 +1,12 @@
-import React, { useState, createContext } from 'react';
+import { useState } from 'react';
 import classnames from 'classnames';
 import orderBy from 'lodash/orderBy';
 import "./Table.scss";
 import Row from '../Row'
-import type { IPerson, ITableColumn, ITableHeaderRow, ISortOrder } from '../../interfaces'
+import type { ITableColumn, ITableHeaderRow, ISortOrder, IFilter } from '../../interfaces'
 import HeaderCell from '../HeaderCell';
+import { SORT_ORDERS, filterRows } from '../../util';
+import { TableSortContext } from '../../contexts';
 
 interface ITableProps<T> {
   className?: string;
@@ -13,30 +15,10 @@ interface ITableProps<T> {
   columns: ITableColumn<T>[];
   defaultSortPredicate: string;
   backupSortPredicate: string;
+  filters?: IFilter[];
 };
 
-export const SORT_ORDERS = Object.freeze({
-  ASC: 'asc',
-  DESC: 'desc',
-} as const)
-
-// interface ITableSortContext {
-//   sortPredicate: string;
-//   sortOrder: ISortOrder;
-//   setSortPredicate: React.Dispatch<React.SetStateAction<string>>;
-//   setSortOrder: React.Dispatch<React.SetStateAction<ISortOrder>>;
-// }
-
-// export const TableSortContext = createContext<ITableSortContext>({ ... })
-
-export const TableSortContext = createContext({
-  sortPredicate: 'name',
-  sortOrder: SORT_ORDERS.ASC as ISortOrder,
-  setSortPredicate:( () => {}) as React.Dispatch<React.SetStateAction<string>>,
-  setSortOrder: (() => {}) as React.Dispatch<React.SetStateAction<ISortOrder>>,
-});
-
-function Table<T extends object>({ className, rows, columns, defaultSortPredicate, backupSortPredicate }: ITableProps<T>) {
+function Table<T extends object>({ className, rows, columns, defaultSortPredicate, backupSortPredicate, filters }: ITableProps<T>) {
   const [sortPredicate, setSortPredicate] = useState(defaultSortPredicate);
   const [sortOrder, setSortOrder] = useState(SORT_ORDERS.ASC as ISortOrder);
   const sortedColumns = [...columns].sort((a, b) => a.index > b.index ? 1 : -1);
@@ -44,9 +26,13 @@ function Table<T extends object>({ className, rows, columns, defaultSortPredicat
     ...col,
     component: HeaderCell,
   }));
+
+  const filteredRows = filters && filters.length > 0 ? filterRows(rows, filters)  : rows;
+
   const sortByColumn = columns.find(col => col.field === sortPredicate) as ITableColumn<T>;
   const sortByFunction = sortByColumn.sortByFunction || sortPredicate; // default to field value if there's no sort by function
-  const sortedRows = orderBy(rows, [sortByFunction, defaultSortPredicate || backupSortPredicate], [sortOrder, sortOrder]);
+  const sortedRows = orderBy(filteredRows, [sortByFunction, defaultSortPredicate || backupSortPredicate], [sortOrder, sortOrder]);
+
   const headerRow = columns.reduce((agg: Partial<ITableHeaderRow>, col) => {
     return {
       ...agg,

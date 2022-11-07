@@ -1,7 +1,8 @@
 import "./HeaderCell.scss";
 import { useContext } from 'react';
 import { BsArrowUp, BsArrowDown } from "react-icons/bs";
-import { TableSortContext, SORT_ORDERS } from '../Table';
+import { SORT_ORDERS } from '../../util';
+import { TableSortContext } from '../../contexts';
 
 export type IHeaderCellProps = {
   name: string;

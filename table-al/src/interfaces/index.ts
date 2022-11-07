@@ -46,3 +46,9 @@ export interface ITableCellComponent {
     [key: string]: any;
   }
 }
+
+export interface IFilter {
+  type: 'SEARCH' | 'SELECT',
+  field: string,
+  value: string | string[],
+}

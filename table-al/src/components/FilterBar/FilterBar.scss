@@ -1,0 +1,18 @@
+@import "../../styles/variables/_palette";
+
+.FilterBar {
+  background-color: #2F2963;
+  color: $table-header-gray;
+  height: 3rem;
+  padding: 0 2rem;
+
+  display: flex;
+  align-items: center;
+
+  p { 
+    margin: 0 2rem 0 0;
+    font-weight: bold;
+    font-size: 24px;
+    transform: translateY(-2px);
+  }
+}
