@@ -215,9 +215,10 @@ export const songColumns: ITableColumn<ISong>[] = [
     name: 'Duration',
     index: 4,
     field: 'duration',
-    formatFunction: (milliseconds: number): string => {
-      const minutes = Math.floor(milliseconds / 60000);
-      const seconds = ((milliseconds % 60000) / 1000)
+    formatFunction: (row: ISong): string => {
+      const duration = row.duration;
+      const minutes = Math.floor(duration / 60000);
+      const seconds = ((duration % 60000) / 1000)
       const roundedSeconds = seconds.toFixed(0);
       return minutes + ":" + (seconds < 9.5 ? '0' : '') + roundedSeconds;
     }
