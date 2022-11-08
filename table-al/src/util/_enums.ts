@@ -6,4 +6,5 @@ export const SORT_ORDERS = Object.freeze({
 export const FILTER_TYPES = Object.freeze({
   SEARCH: 'SEARCH',
   SELECT: 'SELECT',
+  CUSTOM: 'CUSTOM',
 } as const);
