@@ -40,15 +40,13 @@ function Table<T extends object>({ className, rows, columns, defaultSortPredicat
         props: {
           name: col.name,
           field: col.field,
-          sortPredicate,
-          sortOrder,
         }
       },
     }
   }, {
-    sortPredicate,
-    sortOrder,
   } as Partial<ITableHeaderRow>) as ITableHeaderRow;
+
+  console.log(headerRow)
 
   return (
     <table className={classnames("table", className)}>
