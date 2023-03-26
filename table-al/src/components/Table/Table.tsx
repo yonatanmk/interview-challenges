@@ -19,7 +19,7 @@ interface ITableProps<T> {
 };
 
 function Table<T extends object>({ className, rows, columns, defaultSortPredicate, backupSortPredicate, filters }: ITableProps<T>) {
-  const [sortPredicate, setSortPredicate] = useState(defaultSortPredicate);
+  const [sortPredicate, setSortPredicate] = useState(defaultSortPredicate || columns[0]?.name,);
   const [sortOrder, setSortOrder] = useState(SORT_ORDERS.ASC as ISortOrder);
   const sortedColumns = [...columns].sort((a, b) => a.index > b.index ? 1 : -1);
   const headerColumns = sortedColumns.map(col => ({
